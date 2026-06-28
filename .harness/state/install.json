@@ -1,0 +1,106 @@
+{
+  "schema_version": 3,
+
+  "installed_at": "2026-06-27T07:02:21Z",
+  "harness_version": "0.10.2",
+
+  "onboarding": {
+    "mode": "pro",
+    "questions_asked": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "questions_defaulted": []
+  },
+
+  "project_mode": "greenfield",
+
+  "absorption": {
+    "absorbed_from": [],
+    "absorbed_at": null,
+    "carried_forward": {"section2_identity": 0, "section3_red_lines": 0, "anti_flag_rules": 0, "rule_sources": 0, "slots": 0},
+    "skipped_conflicts": []
+  },
+
+  "slots": {
+    "project_name": "autoembed-iot",
+    "project_description": "An LLM-driven system that automates embedded-IoT software development: it takes a developer's natural-language requirement, resolves the required hardware libraries, generates embedded firmware, compiles it, and deploys/tests it on real hardware in a hardware-in-the-loop loop (AutoEmbed-style). COMP6733 IoT research project (UNSW 26T2), 5-person team.",
+    "project_stage": "early",
+    "project_scale_target": "Small / academic. A demonstrable research prototype evaluated over a benchmark of embedded-IoT tasks (AutoEmbed-style ~71 modules / ~350 tasks as the reference scope), not a production-scale service.",
+    "team_size": "small",
+    "primary_concern": "generated-firmware correctness, reproducible evaluation results, and end-to-end pipeline reliability (natural-language requirement to compiled, real-hardware-verified firmware), with fast iteration toward a working demo",
+    "out_of_scope_items": [
+      "production-grade scaling and high-availability infrastructure",
+      "long-term ops/SRE and on-call",
+      "security and compliance hardening for public deployment",
+      "UI/UX polish beyond what the demo needs",
+      "non-IoT or non-code-generation product concerns"
+    ],
+    "auditor_model": "Codex",
+    "auditor_model_id": "gpt-5.5",
+    "language_mode": "professional",
+    "spec_dir": "docs/features/",
+    "implementation_dir": "docs/features/",
+
+    "project_audience": "The COMP6733 teaching team (markers/supervisor) and our own 5-person team during the project; the system's intended end users are embedded-IoT developers who want to generate working firmware from natural-language requirements.",
+    "project_non_goals": [
+      "No production or commercial product",
+      "No arbitrary non-IoT software",
+      "No security/compliance guarantees for public deployment",
+      "No hardware-platform breadth beyond demonstration/evaluation needs"
+    ],
+    "project_compliance": "none",
+    "project_performance_floor": "No hard runtime floor. The working target is AutoEmbed-comparable code-generation accuracy and task success rate on the evaluation benchmark, plus the closed-loop demo completing within the demonstration time budget.",
+    "project_identity_other": [],
+
+    "tech_stack": "Python (LLM orchestration / agent layer) + C/C++ embedded firmware (Arduino / PlatformIO) + a cloud LLM API (Claude / GPT). Planned; greenfield, not yet scaffolded.",
+    "repo_structure": "TBD (greenfield). doc/ currently holds the course brief, the proposal rubric, and the AutoEmbed reference paper. Source layout to be established at first scaffold.",
+    "dependency_flow": "TBD. Expected high-level flow: orchestration/agent layer (Python) -> library-resolution and code-generation modules -> firmware build/deploy (Arduino/PlatformIO toolchain) -> hardware-in-the-loop test harness.",
+    "release_lanes": ["git-push"],
+    "backend_change_lane": "N/A - no backend database or server tier",
+    "error_tracker": "structured logging",
+    "test_required": true,
+    "junior_reviewers": ["security-reviewer"],
+    "rule_sources": [],
+    "supported_locales": ["en"],
+    "edge_case_categories": [
+      "input-anomaly",
+      "network-failure",
+      "concurrency-conflict",
+      "permission-auth",
+      "lifecycle-state",
+      "data-consistency",
+      "resource-limits",
+      "error-recovery"
+    ],
+    "test_framework": "pytest",
+    "test_runner_command": "pytest",
+    "feature_folder_pattern": "src/",
+    "client_code_paths": [],
+    "backend_code_paths": [],
+    "backend_db_type": "none",
+    "high_trap_libraries": [
+      "Arduino/PlatformIO core libraries",
+      "embedded toolchain / board packages",
+      "LLM SDK (anthropic / openai)"
+    ],
+    "migration_dir": "",
+    "pii_columns": [],
+    "rls_auth_function": ""
+  },
+
+  "environment": {
+    "platform": "windows-git-bash",
+    "tier": "1-claude-codex",
+    "ai_clis_installed": {"claude": true, "codex": true, "gemini": false}
+  },
+
+  "magi_system": {
+    "core_cli": "claude",
+    "verdict_cli": "codex",
+    "verdict_model_id": "gpt-5.5"
+  },
+
+  "render_status": {
+    "constitution.md": {"slots_filled": 10, "warnings": []},
+    "CLAUDE.md": {"slots_filled": 25, "warnings": []},
+    "AGENTS.md": {"slots_filled": 23, "warnings": []}
+  }
+}
