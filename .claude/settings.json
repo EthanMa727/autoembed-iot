@@ -2,14 +2,6 @@
   "hooks": {
     "Stop": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \"try{[void][System.Console]::In.ReadToEnd()}catch{};$b=(@{sessionId=4;event='stop'}|ConvertTo-Json -Compress);try{Invoke-RestMethod -Uri 'http://127.0.0.1:61118/hook' -Method POST -Body $b -ContentType 'application/json' -TimeoutSec 3|Out-Null}catch{} # ccc-hook\""
-          }
-        ]
-      },
-      {
         "_comment": "Scratchpad update (v2 Phase 4): fires at end of each AI turn. Instructs AI to rewrite .harness/state/scratchpad.md with current objective / last step / next step / blockers. Manus-style recitation bias against context distraction.",
         "hooks": [
           {
@@ -21,14 +13,6 @@
       }
     ],
     "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \"$stdin=try{[System.Console]::In.ReadToEnd()}catch{'{}'}; $d=try{$stdin|ConvertFrom-Json}catch{[PSCustomObject]@{}}; $tool=if($d.tool_name){[string]$d.tool_name}else{'unknown'}; $b=(@{sessionId=4;event='pretooluse';tool=$tool;toolInput=$d.tool_input}|ConvertTo-Json -Compress -Depth 6); $r=$null; try{$r=Invoke-RestMethod -Uri 'http://127.0.0.1:61118/hook' -Method POST -Body $b -ContentType 'application/json' -TimeoutSec 60}catch{}; if($r -and $r.passthrough){exit 0}; $code=if($r){[int]$r.exitCode}else{0}; $decision=if($code -eq 0){'allow'}else{'deny'}; $out=(@{hookSpecificOutput=@{hookEventName='PreToolUse';permissionDecision=$decision}}|ConvertTo-Json -Compress); [Console]::Out.Write($out); exit 0 # ccc-hook\""
-          }
-        ]
-      },
       {
         "_comment": "Pre-commit gate: typecheck + lint-bans + cycles. Matcher constrains to Bash calls; each script self-filters to `git commit` invocations via stdin parsing (settings.json `if` clause was found not to be honored consistently — see harness-testing-2026-05-25.md § P0.Z).",
         "matcher": "Bash",
@@ -51,16 +35,6 @@
             "command": "\"$CLAUDE_PROJECT_DIR\"/.harness/scripts/precommit-cycles.sh",
             "timeout": 60,
             "statusMessage": "Checking for dependency cycles..."
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \"$stdin=try{[System.Console]::In.ReadToEnd()}catch{'{}'}; $d=try{$stdin|ConvertFrom-Json}catch{[PSCustomObject]@{}}; $msg=if($d.message){[string]$d.message}else{''}; $b=(@{sessionId=4;event='notification';message=$msg}|ConvertTo-Json -Compress); try{Invoke-RestMethod -Uri 'http://127.0.0.1:61118/hook' -Method POST -Body $b -ContentType 'application/json' -TimeoutSec 3|Out-Null}catch{} # ccc-hook\""
           }
         ]
       }
