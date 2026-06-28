@@ -118,3 +118,6 @@ Thumbs.db
 # *.pyc
 # dist/
 # build/
+
+# Private: keep the team proposal OUT of (public) GitHub
+ref-doc/6733 proposal .docx
