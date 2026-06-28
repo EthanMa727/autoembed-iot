@@ -53,7 +53,7 @@
         ]
       }
     ],
-    "PreCompaction": [
+    "PreCompact": [
       {
         "_comment": "Memory snapshot: prompts Claude (via additionalContext) to summarize the session's key decisions into .harness/memory/observations.jsonl BEFORE context compaction proceeds. Claude does the summarization; the hook just orchestrates the prompt.",
         "hooks": [

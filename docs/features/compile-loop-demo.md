@@ -140,13 +140,13 @@ most wants to show off live.
 
 ## 6. Deferred / unresolved
 
-- **[CONFIRM] Which AI model** to use for the demo (a strong model maximises first-try
-  compiles; a cheaper one saves budget). One provider is enough for the demo; comparing
-  ≥2 models is a later, separate experiment required by the proposal.
-- **[CONFIRM] Which board revision** the team has (this decides which on-board
-  temperature/humidity sensor the cheat-sheet targets).
-- **[CONFIRM] The exact 3–5 task wordings** — manager will propose a starter set; CEO can
-  swap them.
+- **RESOLVED — AI model = Claude (Anthropic), `claude-sonnet-4-6`.** A strong, low-cost
+  model; one provider is enough for the demo. Comparing ≥2 models stays a later, separate
+  experiment required by the proposal.
+- **RESOLVED — board = Nano 33 BLE Sense Rev2**, so the cheat-sheet targets the on-board
+  HS3003 temperature/humidity sensor (`Arduino_HS300x` library).
+- **RESOLVED — starter task set** of 5 Level-1 single-sensor tasks is bundled; CEO can
+  swap any wording.
 
 ## 7. Out of scope
 
@@ -159,11 +159,11 @@ most wants to show off live.
 
 ## 8. Decision history
 
-- **[CONFIRM] D1 — Provider = Claude (Anthropic)** for the demo; single provider for now.
-  Why: the eventual project must compare ≥2 LLMs, but the demo only needs to prove the
-  loop. Multi-model comparison deferred to the evaluation milestone.
-- **[CONFIRM] D2 — Cheat-sheet sensor = the on-board temperature/humidity sensor.** Why:
-  no wiring, always present, a clean Level-1 task. Exact chip depends on board revision (D2 above).
+- **D1 — Provider = Claude (Anthropic), model `claude-sonnet-4-6`** for the demo; single
+  provider for now. Why: the eventual project must compare ≥2 LLMs, but the demo only needs
+  to prove the loop. Multi-model comparison deferred to the evaluation milestone.
+- **D2 — Cheat-sheet sensor = on-board HS3003 (Nano 33 BLE Sense Rev2), `Arduino_HS300x`.**
+  Why: no wiring, always present, a clean Level-1 task. Board confirmed as Rev2.
 - **D3 — Compile-repair retry cap = 3.** Why: mirrors the AutoEmbed finding that 3 compile
   trials capture almost all of the gain — a defensible, citable default for the proposal.
 - **D4 — Compile-only, no flashing.** Why: removes the hardware dependency so the demo can

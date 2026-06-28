@@ -1,0 +1,14 @@
+{
+  "component": "On-board temperature/humidity sensor, Nano 33 BLE Sense Rev2 (HS3003)",
+  "library_include": "#include <Arduino_HS300x.h>",
+  "init": "HS300x.begin();   // call once in setup(); returns 1 on success, 0 on failure",
+  "apis": [
+    {"name": "HS300x.readTemperature()", "returns": "float, degrees Celsius"},
+    {"name": "HS300x.readHumidity()", "returns": "float, percent relative humidity"}
+  ],
+  "gotchas": [
+    "Call Serial.begin(9600) in setup(); optionally wait for the serial port.",
+    "No external wiring - the sensor is on the board.",
+    "Rev1 boards use Arduino_HTS221.h / the HTS object instead; this table targets Rev2 (HS3003)."
+  ]
+}

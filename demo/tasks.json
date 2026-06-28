@@ -1,0 +1,7 @@
+[
+  {"id": "t1_temp_serial", "task": "Read the on-board temperature sensor and print the temperature in degrees Celsius to the serial monitor once every second."},
+  {"id": "t2_temp_humidity", "task": "Print both temperature (in Celsius) and humidity (in percent relative humidity) once per second, each value clearly labelled, to the serial monitor."},
+  {"id": "t3_temp_warning", "task": "Every second, read the temperature. If it is above 30 degrees Celsius, print a line that starts with the word WARNING; otherwise print the temperature value."},
+  {"id": "t4_temp_average", "task": "Take 10 temperature readings, compute their average, and print the mean temperature once every 10 seconds."},
+  {"id": "t5_humidity_change", "task": "Print the humidity reading only when it has changed by more than 2 percent relative humidity since the previous reading; otherwise print nothing."}
+]

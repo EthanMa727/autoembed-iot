@@ -85,10 +85,13 @@ if [ -z "$CONTEXT_BUDGET" ]; then
   # 1M-token extended-context tier (separate model ID with different pricing).
   case "$DETECTED_MODEL" in
     *"[1m]"*)
-      CONTEXT_BUDGET=1000000  # Claude Opus/Sonnet 1M extended context
+      CONTEXT_BUDGET=1000000  # Explicit 1M extended-context tier (suffixed ID)
+      ;;
+    claude-opus-4-6*|claude-opus-4-7*|claude-opus-4-8*|claude-sonnet-4-6*|claude-fable-5*|claude-mythos-5*)
+      CONTEXT_BUDGET=1000000  # Opus 4.6/4.7/4.8, Sonnet 4.6, Fable/Mythos 5 — 1M standard context
       ;;
     claude-opus-*|claude-sonnet-*|claude-haiku-*)
-      CONTEXT_BUDGET=200000   # Standard Claude 4.x models (Opus/Sonnet/Haiku)
+      CONTEXT_BUDGET=200000   # Older standard Claude models (Opus 4.5 / Sonnet 4.5 / Haiku 4.5)
       ;;
     *gpt-5*|*o3*|*o4*)
       CONTEXT_BUDGET=200000   # OpenAI flagship — conservative; override via env for higher

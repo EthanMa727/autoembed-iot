@@ -1,0 +1,7 @@
+# Generated artifacts (regenerated on every run)
+sketches/
+results/
+
+# Python bytecode
+__pycache__/
+*.pyc
